@@ -10,10 +10,13 @@ This repository contains minimal "hello world" applications for a handful of dif
 1. Target your space in the `sandbox`.
 
     ```bash
-    cf target -o sandbox -s <USERNAME>
+    cf target -o sandbox -s <USER>
     ```
+    
+    Where <USER> is the user portion (firstname.lastname) of your email address.
 
-1. Deploy the application, where `APPNAME` should be something unique like `FRAMEWORK-USERNAME` (e.g. `nodejs-afeld`).
+1. Deploy the application, where `APPNAME` should be something unique like `FRAMEWORK-YOURNAME` (e.g. `nodejs-aidan`). By default, `APPNAME` is used to contstruct a route to make your application reachable at https://APPNAME.cf.18f.us. Route names must be unique across the platform.
+
 
     ```bash
     cf push <APPNAME>

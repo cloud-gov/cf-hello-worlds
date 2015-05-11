@@ -1,0 +1,4 @@
+---
+applications:
+- name: flask-example
+  stack: lucid64

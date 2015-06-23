@@ -1,0 +1,3 @@
+---
+applications:
+-  command: bundle exec padrino start -p $PORT

@@ -12,6 +12,7 @@ GEM
       url_mount (~> 0.2.1)
     i18n (0.7.0)
     json (1.8.3)
+    kgio (2.9.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -57,6 +58,7 @@ GEM
     rack (1.5.5)
     rack-protection (1.5.3)
       rack
+    raindrops (0.13.0)
     rake (10.4.2)
     sinatra (1.4.6)
       rack (~> 1.4)
@@ -74,6 +76,10 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unicorn (4.9.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     url_mount (0.2.1)
       rack
 
@@ -84,6 +90,7 @@ DEPENDENCIES
   padrino (= 0.12.5)
   rake
   slim
+  unicorn
 
 BUNDLED WITH
-   1.10.3
+   1.10.4

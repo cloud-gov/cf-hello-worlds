@@ -1,4 +1,4 @@
 ---
+buildpack: https://github.com/cloudfoundry/python-buildpack
 applications:
 - name: flask-example
-  stack: lucid64

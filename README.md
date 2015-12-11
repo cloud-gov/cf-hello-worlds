@@ -4,7 +4,7 @@ This repository contains minimal "hello world" applications for a handful of dif
 
 ## Usage
 
-1. Follow the general CF command-line (CLI) [setup instructions](https://docs.18f.gov/getting-started/setup/).
+1. Follow the general CF command-line (CLI) [setup instructions](https://docs.cloud.gov/getting-started/setup/).
 1. Download/clone this repository.
 1. `cd` into the subdirectory for whatever language/framework you feel most comfortable with.
 1. Target your space in the `sandbox`.

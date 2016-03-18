@@ -13,7 +13,7 @@ This repository contains minimal "hello world" applications for a handful of dif
     cf target -o sandbox -s <USER>
     ```
     
-    Where <USER> is the user portion (firstname.lastname) of your email address.
+    Where `<USER>` is the user portion (firstname.lastname) of your email address.
 
 1. Deploy the application, where `APPNAME` should be something unique like `FRAMEWORK-YOURNAME` (e.g. `nodejs-aidan`). By default, `APPNAME` is used to construct a route to make your application reachable at https://APPNAME.apps.cloud.gov/. Route names must be unique across the platform.
 

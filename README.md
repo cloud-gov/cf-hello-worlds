@@ -22,7 +22,11 @@ This repository contains minimal "hello world" applications for a handful of dif
     cf push <APPNAME>
     ```
 
-### Public domain
+## See also
+
+[The official collections of sample applications for Cloud Foundry.](https://github.com/cloudfoundry-samples)
+
+## Public domain
 
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
 

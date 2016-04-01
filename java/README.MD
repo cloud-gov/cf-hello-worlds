@@ -1,8 +1,14 @@
 #Deploying the hello world Java App
 
-###Build the application
+###Build the application on Mac OS X, Unix, or Linux
 ```bash
-run ./gradle distZip
+./gradlew distZip
+```
+This will download all of the dependencies and create the application for deploying
+
+###Build the application on windows
+```
+gradlew.bat distZip
 ```
 This will download all of the dependencies and create the application for deploying
 

@@ -1,0 +1,5 @@
+---
+applications:
+- name: php
+  memory: 256M
+  buildpack: git://github.com/heroku/heroku-buildpack-php.git

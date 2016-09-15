@@ -25,9 +25,9 @@ This repository contains minimal "hello world" applications for a handful of dif
 ## See also
 
 * [The official collections of sample applications for Cloud Foundry.](https://github.com/cloudfoundry-samples)
-* [Drupal example](https://github.com/18F/cf-ex-wordpress)
+* [Drupal example](https://github.com/18F/cf-ex-drupal)
 * [SuiteCRM](https://github.com/18F/cf-example-suitecrm)
-* [Wordpress example](https://github.com/18F/cf-ex-drupal)
+* [Wordpress example](https://github.com/18F/cf-ex-wordpress)
 
 ## Public domain
 

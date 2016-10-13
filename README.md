@@ -4,18 +4,14 @@ This repository contains minimal "hello world" applications for a handful of dif
 
 ## Usage
 
-1. Follow the general CF command-line (CLI) [setup instructions](https://docs.cloud.gov/getting-started/setup/).
-1. Download/clone this repository.
+First, follow the [Cloud Foundry command-line (CLI) setup instructions](https://docs.cloud.gov/getting-started/setup/) and log into your account on the Cloud Foundry instance you use. (For example, if you use cloud.gov, follow [the "Setting up the command line" instructions](https://docs.cloud.gov/getting-started/setup/#setting-up-the-command-line) to get an account and log in.)
+
+Then, to deploy one of these "hello world" applications:
+
+1. Clone or download this repository.
 1. `cd` into the subdirectory for whatever language/framework you feel most comfortable with.
-1. Target your space in the `sandbox`.
-
-    ```bash
-    cf target -o sandbox -s <USER>
-    ```
-    
-    Where `<USER>` is the user portion (firstname.lastname) of your email address.
-
-1. Deploy the application, where `APPNAME` should be something unique like `FRAMEWORK-YOURNAME` (e.g. `nodejs-aidan`). By default, `APPNAME` is used to construct a route to make your application reachable at https://APPNAME.apps.cloud.gov/. Route names must be unique across the platform.
+1. Target one of your spaces using `cf target`. (For new cloud.gov users, try targeting your sandbox space. See ["Play around in a “sandbox"](https://docs.cloud.gov/getting-started/setup/##play-around-in-a-sandbox) to figure out the exact `cf target -o <ORG> -s <SPACE>` command to use.)
+1. Deploy the application, where `APPNAME` should be something unique like `FRAMEWORK-YOURNAME` (e.g. `nodejs-aidan`). By default on cloud.gov, `APPNAME` is used to construct a route to make your application reachable at https://APPNAME.apps.cloud.gov/. Route names must be unique across the platform.
 
 
     ```bash
@@ -24,7 +20,7 @@ This repository contains minimal "hello world" applications for a handful of dif
 
 ## See also
 
-* [The official collections of sample applications for Cloud Foundry.](https://github.com/cloudfoundry-samples)
+* [The official collection of sample applications for Cloud Foundry.](https://github.com/cloudfoundry-samples)
 * [Drupal example](https://github.com/18F/cf-ex-drupal)
 * [SuiteCRM](https://github.com/18F/cf-example-suitecrm)
 * [Wordpress example](https://github.com/18F/cf-ex-wordpress)

@@ -1,0 +1,168 @@
+jobs:
+- name: deploy-python-flask
+  plan:
+  - aggregate: &plan-gets
+    - get: cf-hello-worlds
+    - get: timer
+      trigger: true
+  - put: deploy-python-flask
+    params:
+      path: cf-hello-worlds/python-flask
+      manifest: cf-hello-worlds/python-flask/manifest.yml
+      current_app_name: test-python-flask
+  on_failure:
+    put: slack
+    params: &slack-params
+      text: |
+        :x: Failed to deploy python-flask sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+      channel: ((slack-channel))
+      username: ((slack-username))
+      icon_url: ((slack-icon-url))
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :white_check_mark: Successfully deployed python-flask sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
+- name: deploy-ruby-padrino
+  plan:
+  - aggregate: *plan-gets
+  - put: deploy-ruby-padrino
+    params:
+      path: cf-hello-worlds/ruby-padrino
+      manifest: cf-hello-worlds/ruby-padrino/manifest.yml
+      current_app_name: test-ruby-padrino
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy ruby-padrino sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :white_check_mark: Successfully deployed ruby-padrino sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
+- name: deploy-ruby-sinatra
+  plan:
+  - aggregate: *plan-gets
+  - put: deploy-ruby-sinatra
+    params:
+      path: cf-hello-worlds/ruby-sinatra
+      manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
+      current_app_name: test-ruby-sinatra
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy ruby-sinatra sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :white_check_mark: Successfully deployed ruby-sinatra sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
+- name: deploy-nodejs
+  plan:
+  - aggregate: *plan-gets
+  - put: deploy-nodejs
+    params:
+      path: cf-hello-worlds/nodejs
+      manifest: cf-hello-worlds/nodejs/manifest.yml
+      current_app_name: test-nodejs
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy nodejs sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :white_check_mark: Successfully deployed nodejs sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
+- name: deploy-php
+  plan:
+  - aggregate: *plan-gets
+  - put: deploy-php
+    params:
+      path: cf-hello-worlds/php
+      manifest: cf-hello-worlds/php/manifest.yml
+      current_app_name: test-php
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy php sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :white_check_mark: Successfully deployed php sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
+resources:
+- name: cf-hello-worlds
+  type: git
+  source:
+    uri: https://github.com/18F/cf-hello-worlds
+    branch: master
+
+- name: timer
+  type: time
+  source:
+    interval: 24h
+
+- name: deploy-python-flask
+  type: cf
+  source: &cf-source
+    api: ((cf-api-url))
+    username: ((cf-username))
+    password: ((cf-password))
+    organization: ((cf-organization))
+    space: ((cf-space))
+
+- name: deploy-ruby-padrino
+  type: cf
+  source: *cf-source
+
+- name: deploy-ruby-sinatra
+  type: cf
+  source: *cf-source
+
+- name: deploy-nodejs
+  type: cf
+  source: *cf-source
+
+- name: deploy-php
+  type: cf
+  source: *cf-source
+
+- name: slack
+  type: slack-notification
+  source:
+    url: ((slack-webhook-url))
+
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource

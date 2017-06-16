@@ -1,0 +1,4 @@
+---
+applications:
+- name: ruby-sinatra
+  buildpack: ruby_buildpack

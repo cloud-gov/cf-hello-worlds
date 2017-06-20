@@ -1,0 +1,4 @@
+---
+buildpack: nodejs_buildpack
+applications:
+- name: nodejs-example

@@ -2,3 +2,4 @@
 buildpack: nodejs_buildpack
 applications:
 - name: nodejs-example
+  memory: 256M

@@ -23,6 +23,7 @@ jobs:
     put: slack
     params:
       <<: *slack-params
+      channel: ((slack-news-channel))
       text: |
         :white_check_mark: Successfully deployed python-flask sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -46,6 +47,7 @@ jobs:
     put: slack
     params:
       <<: *slack-params
+      channel: ((slack-news-channel))
       text: |
         :white_check_mark: Successfully deployed ruby-padrino sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -69,6 +71,7 @@ jobs:
     put: slack
     params:
       <<: *slack-params
+      channel: ((slack-news-channel))
       text: |
         :white_check_mark: Successfully deployed ruby-sinatra sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -92,6 +95,7 @@ jobs:
     put: slack
     params:
       <<: *slack-params
+      channel: ((slack-news-channel))
       text: |
         :white_check_mark: Successfully deployed nodejs sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -115,6 +119,7 @@ jobs:
     put: slack
     params:
       <<: *slack-params
+      channel: ((slack-news-channel))
       text: |
         :white_check_mark: Successfully deployed php sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>

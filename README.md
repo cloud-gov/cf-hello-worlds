@@ -1,6 +1,6 @@
 # Hello World apps for Cloud Foundry
 
-This repository contains minimal "hello world" applications for a handful of different languages/frameworks for testing deployment to [Cloud Foundry](http://www.cloudfoundry.org/) ("CF"), though they may be useful for other things. Think of it like [TodoMVC](http://todomvc.com/), but server-side.
+This repository contains minimal "hello world" applications for a handful of different languages/frameworks for testing deployment to [Cloud Foundry](https://www.cloudfoundry.org/) ("CF"), though they may be useful for other things. Think of it like [TodoMVC](http://todomvc.com/), but server-side.
 
 ## Usage
 
@@ -18,9 +18,8 @@ This repository contains minimal "hello world" applications for a handful of dif
 
 ## See also
 
-* [The official collection of sample applications for Cloud Foundry](https://github.com/cloudfoundry-samples)
+* [Cloud Foundry community collection of sample applications](https://github.com/cloudfoundry-samples)
 * [Drupal example](https://github.com/18F/cf-ex-drupal)
-* [SuiteCRM](https://github.com/18F/cf-example-suitecrm)
 * [Wordpress example](https://github.com/18F/cf-ex-wordpress)
 
 ## Public domain

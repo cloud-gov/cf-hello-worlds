@@ -1,0 +1,7 @@
+---
+buildpacks: dotnet_core_buildpack
+applications:
+  - name: dotnet-core
+    random-route: true
+    env:
+      CACHE_NUGET_PACKAGES: false

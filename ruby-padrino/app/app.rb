@@ -6,7 +6,7 @@ module Padrino
     enable :sessions
 
     get '/' do
-      "hello!"
+      "Hello World from Padrino!"
     end
     ##
     # Caching support.

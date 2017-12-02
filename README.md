@@ -1,13 +1,12 @@
 # Hello World apps for cloud.gov
 
-This repository contains minimal "hello world" applications for a handful of different languages/frameworks for testing deployment to [cloud.gov](https://www.cloud.gov/), in particular, and other instances of [Cloud Foundry](https://www.cloudfoundry.org) ("CF") in general.
+This repository contains minimal "Hello World" applications for a handful of different languages/frameworks for testing deployment to [cloud.gov](https://www.cloud.gov/), in particular, and other instances of [Cloud Foundry](https://www.cloudfoundry.org) ("CF") in general.
  
- For [cloud.gov](https://cloud.gov), follow the [quickstart guide](https://cloud.gov/quickstart/) for a guided tour, or follow the USAGE below.
+For [cloud.gov](https://cloud.gov), follow the [quickstart guide](https://cloud.gov/quickstart/) for a guided tour, or follow the USAGE below.
 
 ## Usage
 
 All of these examples, except Java, have the same usage. For Java, see its [INSTRUCTIONS.md](./java-see-instructions/INSTRUCTIONS.md).
-
 
 1. Follow the [Cloud Foundry command-line (CLI) setup instructions](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html).
 1. Log into your Cloud Foundry account. (For example, if you use cloud.gov, follow [the "Set up the command line" instructions](https://cloud.gov/docs/getting-started/setup/#set-up-the-command-line) to log in.)
@@ -28,6 +27,8 @@ All of these examples, except Java, have the same usage. For Java, see its [INST
     stack: cflinuxfs2
     ```
 1. Visit your app with your browser at the URL assigned to your app. In the example above, that would be: e.g. https://php-random-words.app.cloud.gov
+
+All of examples produce web applications that respond "Hello World from &lt;framework&gt;" on their index page.
 
 ## See also
 

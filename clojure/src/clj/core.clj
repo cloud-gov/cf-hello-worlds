@@ -4,7 +4,7 @@
 (defn handler [request]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body "Hello World!"})
+   :body "Hello World from Clojure!"})
 
 (defn -main [port]
   (run-jetty handler {:port (Integer. port)}))

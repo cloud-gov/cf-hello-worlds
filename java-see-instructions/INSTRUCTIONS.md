@@ -14,6 +14,6 @@ First, use the following command to download all of the dependencies and create 
 
 ## Deploy the application
 
-Then follow the usual process for deploying, except specify the zip when pushing:
+Then follow the usual process for deploying
 
-    cf push -p build/distributions/java-hello-world-cf-example.zip <APPNAME>
+    cf push

@@ -3,3 +3,4 @@ applications:
 - name: php
   memory: 256M
   buildpack: php_buildpack
+  random-route: true

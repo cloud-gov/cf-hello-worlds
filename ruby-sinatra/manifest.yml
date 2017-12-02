@@ -3,3 +3,4 @@ applications:
 - name: ruby-sinatra
   buildpack: ruby_buildpack
   memory: 256M
+  random-route: true

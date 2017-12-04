@@ -1,3 +1,4 @@
+# Modified 2017 Peter Burkholder, cloud.gov
 ---
 buildpacks: dotnet_core_buildpack
 applications:

@@ -1,3 +1,4 @@
+// Modified 2017 Peter Burkholder and cloud.gov for .Net Core 2.0
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>

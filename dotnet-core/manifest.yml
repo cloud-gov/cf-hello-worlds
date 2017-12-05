@@ -1,0 +1,8 @@
+# Modified 2017 Peter Burkholder, cloud.gov
+---
+buildpacks: dotnet_core_buildpack
+applications:
+  - name: dotnet-core
+    random-route: true
+    env:
+      CACHE_NUGET_PACKAGES: false

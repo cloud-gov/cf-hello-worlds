@@ -124,6 +124,30 @@ jobs:
         :white_check_mark: Successfully deployed php sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
+- name: deploy-dotnet-core
+  plan:
+  - aggregate: *plan-gets
+  - put: deploy-dotnet-core
+    params:
+      path: cf-hello-worlds/dotnet-core
+      manifest: cf-hello-worlds/dotnet-core/manifest.yml
+      current_app_name: test-dotnet-core
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy dotnet-core sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      channel: ((slack-news-channel))
+      text: |
+        :white_check_mark: Successfully deployed dotnet-core sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
 resources:
 - name: cf-hello-worlds
   type: git
@@ -158,6 +182,10 @@ resources:
   source: *cf-source
 
 - name: deploy-php
+  type: cf
+  source: *cf-source
+
+- name: deploy-dotnet-core
   type: cf
   source: *cf-source
 

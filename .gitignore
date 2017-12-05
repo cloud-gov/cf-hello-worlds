@@ -1,0 +1,5 @@
+.*.cache
+.bundle/
+vendor/
+*.droplet
+local.yml

@@ -1,5 +1,6 @@
 jobs:
 - name: deploy-python-flask
+  serial_groups: [apps]
   plan:
   - aggregate: &plan-gets
     - get: cf-hello-worlds
@@ -29,6 +30,7 @@ jobs:
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
 - name: deploy-ruby-padrino
+  serial_groups: [apps]
   plan:
   - aggregate: *plan-gets
   - put: deploy-ruby-padrino
@@ -53,6 +55,7 @@ jobs:
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
 - name: deploy-ruby-sinatra
+  serial_groups: [apps]
   plan:
   - aggregate: *plan-gets
   - put: deploy-ruby-sinatra
@@ -77,6 +80,7 @@ jobs:
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
 - name: deploy-nodejs
+  serial_groups: [apps]
   plan:
   - aggregate: *plan-gets
   - put: deploy-nodejs
@@ -101,6 +105,7 @@ jobs:
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
 - name: deploy-php
+  serial_groups: [apps]
   plan:
   - aggregate: *plan-gets
   - put: deploy-php
@@ -124,7 +129,35 @@ jobs:
         :white_check_mark: Successfully deployed php sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
+- name: deploy-java
+  serial_groups: [apps]
+  plan:
+  - aggregate: *plan-gets
+  - task: build
+    file: cf-hello-worlds/build-java-see.yml
+  - put: deploy-java
+    params:
+      path: cf-hello-worlds-build/java-see
+      manifest: cf-hello-worlds-build/java-see/manifest.yml
+      current_app_name: test-java
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy java sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      channel: ((slack-news-channel))
+      text: |
+        :white_check_mark: Successfully deployed java sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
 - name: deploy-dotnet-core
+  serial_groups: [apps]
   plan:
   - aggregate: *plan-gets
   - put: deploy-dotnet-core
@@ -182,6 +215,10 @@ resources:
   source: *cf-source
 
 - name: deploy-php
+  type: cf
+  source: *cf-source
+
+- name: deploy-java
   type: cf
   source: *cf-source
 

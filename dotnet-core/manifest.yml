@@ -1,8 +1,8 @@
-# Modified 2017 Peter Burkholder, cloud.gov
 ---
-buildpacks: dotnet_core_buildpack
 applications:
-  - name: dotnet-core
-    random-route: true
-    env:
-      CACHE_NUGET_PACKAGES: false
+- name: dotnet-core
+  buildpack: dotnet_core_buildpack
+  random-route: true
+  memory: 256M
+  env:
+    CACHE_NUGET_PACKAGES: false

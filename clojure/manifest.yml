@@ -1,7 +1,6 @@
 ---
 applications:
 - name: clojure
-  memory: 512M
   buildpack: git://github.com/heroku/heroku-buildpack-clojure.git
   random-route: true
-  
+  memory: 256M

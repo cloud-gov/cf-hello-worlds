@@ -1,7 +1,7 @@
 ---
-buildpack: java_buildpack
 applications:
 - name: java
-  memory: 928M
+  memory: 512M
   random-route: true
   path: build/distributions/java-hello-world-cf-example.zip
+  buildpack: java_buildpack

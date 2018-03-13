@@ -1,20 +1,16 @@
 //Add the spring boot plugin to gradle runtime
 buildscript {
     repositories {
-        mavenCentral()
+        maven { url 'https://repo.spring.io/libs-snapshot' }
     }
+
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:latest.integration")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE")
     }
 }
+
 //Apply the spring-boot plugin to add support for spring-boot applications
 apply plugin: 'spring-boot'
-// Apply the java plugin to add support for Java
-apply plugin: 'java'
-// Apply the eclipse plugin to add support for auto generating eclipse projects
-apply plugin: 'eclipse'
-// Apply the idea plugin to add support for auto generating IntelliJ IDEA ide project
-apply plugin: 'idea'
 // Apply the application plugin to add support for packaging as a distributable zip package
 apply plugin: 'application'
 

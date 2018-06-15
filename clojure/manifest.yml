@@ -2,5 +2,4 @@
 applications:
 - name: clojure
   buildpack: git://github.com/heroku/heroku-buildpack-clojure.git
-  random-route: true
   memory: 256M

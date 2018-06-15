@@ -2,7 +2,6 @@
 applications:
 - name: dotnet-core
   buildpack: dotnet_core_buildpack
-  random-route: true
   memory: 256M
   env:
     CACHE_NUGET_PACKAGES: false

@@ -14,7 +14,7 @@ All of these examples, except Java, have the same usage. For Java, see its [INST
 1. `cd` into the subdirectory for whatever language/framework you feel most comfortable with.
 1. Deploy the application with `cf push`. Look for `urls` value when the push completes.
     ```bash{9}
-    cf push 
+    cf push --random-route
     ...
     Creating app APP in org / space
     OK

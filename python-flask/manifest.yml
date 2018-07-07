@@ -1,5 +1,5 @@
 ---
-buildpack: python_buildpack
 applications:
 - name: flask-example
+  buildpack: python_buildpack
   memory: 256M

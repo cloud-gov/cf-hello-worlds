@@ -10,7 +10,7 @@ buildscript {
 }
 
 //Apply the spring-boot plugin to add support for spring-boot applications
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 // Apply the application plugin to add support for packaging as a distributable zip package
 apply plugin: 'application'
 

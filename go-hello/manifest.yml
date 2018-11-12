@@ -1,3 +1,5 @@
 ---
+applications:
+- name: go-hello
   env:
     GOPACKAGENAME: go-hello

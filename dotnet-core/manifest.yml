@@ -1,7 +1,8 @@
 ---
 applications:
 - name: dotnet-core
-  buildpack: dotnet_core_buildpack
+  buildpacks:
+    - dotnet_core_buildpack
   memory: 256M
   env:
     CACHE_NUGET_PACKAGES: false

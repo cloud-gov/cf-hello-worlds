@@ -33,9 +33,3 @@ dependencies {
     testCompile 'junit:junit:latest.integration',
       'org.springframework.boot:spring-boot-starter-test:latest.integration'
 }
-/**
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
-    distributionUrl = distributionUrl.replace("bin", "all")
-}
-**/

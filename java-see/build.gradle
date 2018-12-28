@@ -34,6 +34,6 @@ dependencies {
       'org.springframework.boot:spring-boot-starter-test:latest.integration'
 }
 
-task wrapper(type: Wrapper) {
+wrapper(type: Wrapper) {
     gradleVersion = '2.12'
 }

@@ -201,6 +201,7 @@ resources:
     password: ((cf-password))
     organization: ((cf-organization))
     space: ((cf-space))
+    verbose: true
 
 - name: deploy-ruby-padrino
   type: cf

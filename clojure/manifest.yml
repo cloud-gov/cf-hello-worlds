@@ -1,5 +1,6 @@
 ---
 applications:
 - name: clojure
-  buildpack: git://github.com/heroku/heroku-buildpack-clojure.git
+  buildpacks:
+    - git://github.com/heroku/heroku-buildpack-clojure.git
   memory: 256M

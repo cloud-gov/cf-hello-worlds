@@ -1,6 +1,7 @@
 ---
 applications:
 - name: ruby-sinatra
+  random-route: true
   buildpacks:
     - ruby_buildpack
   memory: 256M

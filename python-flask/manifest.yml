@@ -1,5 +1,7 @@
 ---
 applications:
 - name: flask-example
-  buildpack: python_buildpack
+  random-route: true
+  buildpacks:
+    - python_buildpack
   memory: 256M

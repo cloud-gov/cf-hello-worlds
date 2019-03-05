@@ -1,5 +1,7 @@
 ---
 applications:
 - name: php
+  random-route: true
   memory: 256M
-  buildpack: php_buildpack
+  buildpacks:
+    - php_buildpack

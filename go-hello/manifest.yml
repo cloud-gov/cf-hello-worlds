@@ -1,3 +1,4 @@
 ---
+  random-route: true
   env:
     GOPACKAGENAME: go-hello

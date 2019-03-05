@@ -1,5 +1,7 @@
 ---
 applications:
 - name: nodejs-example
-  buildpack: nodejs_buildpack
+  random-route: true
+  buildpacks:
+    - nodejs_buildpack
   memory: 256M

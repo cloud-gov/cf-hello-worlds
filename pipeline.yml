@@ -139,7 +139,6 @@ jobs:
     params:
       path: cf-hello-worlds-build/java-see
       manifest: cf-hello-worlds-build/java-see/manifest.yml
-      current_app_name: test-java
   on_failure:
     put: slack
     params:

@@ -1,6 +1,5 @@
 ---
 applications:
 - name: test-ruby-padrino
-  random-route: false
   command: bundle exec unicorn -p $PORT -c ./config/unicorn.rb 
   memory: 256M

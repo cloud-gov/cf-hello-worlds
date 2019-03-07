@@ -1,6 +1,6 @@
 ---
 applications:
-- name: nodejs-example
+- name: test-nodejs
   random-route: true
   buildpacks:
     - nodejs_buildpack

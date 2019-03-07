@@ -1,6 +1,6 @@
 ---
 applications:
-- name: ruby-sinatra
+- name: test-ruby-sinatra
   random-route: true
   buildpacks:
     - ruby_buildpack

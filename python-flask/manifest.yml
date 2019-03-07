@@ -1,6 +1,6 @@
 ---
 applications:
-- name: flask-example
+- name: test-python-flask
   random-route: true
   buildpacks:
     - python_buildpack

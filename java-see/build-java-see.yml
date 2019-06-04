@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: adoptopenjdk/openjdk11
+
+inputs:
+- name: cf-hello-worlds
+outputs:
+- name: cf-hello-worlds-build
+
+run:
+  path: cf-hello-worlds/java-see/build-java-see.sh

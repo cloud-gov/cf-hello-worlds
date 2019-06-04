@@ -3,3 +3,4 @@
 vendor/
 *.droplet
 local.yml
+.idea/

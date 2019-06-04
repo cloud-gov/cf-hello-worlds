@@ -5,7 +5,8 @@ set -ex
 export TERM=${TERM:-dumb}
 
 pushd cf-hello-worlds/java-see
-  ./gradlew distZip
+  ./mvnw compile
+  ./mvnw package
 popd
 
-cp -r cf-hello-worlds/* cf-hello-worlds-build
+cp -r cf-hello-worlds/* cf-hello-worlds-build/

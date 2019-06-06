@@ -6,14 +6,24 @@ First, use the following command to download all of the dependencies and create 
 
 ### Mac OS X, Unix, or Linux
 
-    ./gradlew distZip
+```bash
+./mvnw compile
+./mvnw package
+
+```
 
 ## Windows
 
-    gradlew.bat distZip
+```powershell
+.\mvnw.bat compile
+.\mvnw.bat package
+
+```
 
 ## Deploy the application
 
 Then follow the usual process for deploying
 
-    cf push
+```bash
+cf push
+```

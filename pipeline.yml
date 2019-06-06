@@ -129,10 +129,10 @@ jobs:
   plan:
   - aggregate: *plan-gets
   - task: build
-    file: cf-hello-worlds/build-java-see.yml
+    file: cf-hello-worlds/java-see/build-java-see.yml
   - put: deploy-java
     params:
-      path: cf-hello-worlds-build/java-see
+      path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
   on_failure:
     put: slack

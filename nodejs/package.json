@@ -2,7 +2,7 @@
   "name": "node-example",
   "version": "0.0.1",
   "engines": {
-    "node": "6.x",
+    "node": "8.x",
     "npm": "3.x"
   }
 }

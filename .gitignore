@@ -3,4 +3,5 @@
 vendor/
 *.droplet
 local.yml
+.idea/
 .DS_Store

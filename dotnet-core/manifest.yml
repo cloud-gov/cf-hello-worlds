@@ -1,6 +1,7 @@
 ---
 applications:
-- name: dotnet-core
+- name: test-dotnet-core
+  random-route: true
   buildpacks:
     - dotnet_core_buildpack
   memory: 256M

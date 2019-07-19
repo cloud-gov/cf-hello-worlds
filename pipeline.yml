@@ -10,7 +10,6 @@ jobs:
     params:
       path: cf-hello-worlds/python-flask
       manifest: cf-hello-worlds/python-flask/manifest.yml
-      current_app_name: test-python-flask
   on_failure:
     put: slack
     params: &slack-params
@@ -37,7 +36,6 @@ jobs:
     params:
       path: cf-hello-worlds/ruby-padrino
       manifest: cf-hello-worlds/ruby-padrino/manifest.yml
-      current_app_name: test-ruby-padrino
   on_failure:
     put: slack
     params:
@@ -62,7 +60,6 @@ jobs:
     params:
       path: cf-hello-worlds/ruby-sinatra
       manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
-      current_app_name: test-ruby-sinatra
   on_failure:
     put: slack
     params:
@@ -87,7 +84,6 @@ jobs:
     params:
       path: cf-hello-worlds/nodejs
       manifest: cf-hello-worlds/nodejs/manifest.yml
-      current_app_name: test-nodejs
   on_failure:
     put: slack
     params:
@@ -112,7 +108,6 @@ jobs:
     params:
       path: cf-hello-worlds/php
       manifest: cf-hello-worlds/php/manifest.yml
-      current_app_name: test-php
   on_failure:
     put: slack
     params:
@@ -134,12 +129,11 @@ jobs:
   plan:
   - aggregate: *plan-gets
   - task: build
-    file: cf-hello-worlds/build-java-see.yml
+    file: cf-hello-worlds/java-see/build-java-see.yml
   - put: deploy-java
     params:
-      path: cf-hello-worlds-build/java-see
+      path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
-      current_app_name: test-java
   on_failure:
     put: slack
     params:
@@ -164,7 +158,6 @@ jobs:
     params:
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
-      current_app_name: test-dotnet-core
   on_failure:
     put: slack
     params:
@@ -201,6 +194,7 @@ resources:
     password: ((cf-password))
     organization: ((cf-organization))
     space: ((cf-space))
+    verbose: true
 
 - name: deploy-ruby-padrino
   type: cf

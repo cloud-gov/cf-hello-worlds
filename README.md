@@ -34,7 +34,8 @@ All of examples produce web applications that respond "Hello World from &lt;fram
 
 * [Cloud Foundry community collection of sample applications](https://github.com/cloudfoundry-samples) 
 * [cloud.gov Java Spring Boot example](https://github.com/18F/cf-sample-app-spring): This doesn't require `gradle` or any other dependencies.
-* [cloud.gov Drupal example](https://github.com/18F/cf-ex-drupal)
+* [cloud.gov Drupal 8 example](https://github.com/18F/cf-ex-drupal8)
+* [cloud.gov Drupal 7 example](https://github.com/18F/cf-ex-drupal)
 * [cloud.gov Wordpress example](https://github.com/18F/cf-ex-wordpress)
 
 ## Public domain

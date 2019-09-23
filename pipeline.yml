@@ -2,7 +2,7 @@ jobs:
 - name: deploy-python-flask
   serial_groups: [apps]
   plan:
-  - aggregate: &plan-gets
+  - in_parallel: &plan-gets
     - get: cf-hello-worlds
     - get: timer
       trigger: true
@@ -31,7 +31,7 @@ jobs:
 - name: deploy-ruby-padrino
   serial_groups: [apps]
   plan:
-  - aggregate: *plan-gets
+  - in_parallel: *plan-gets
   - put: deploy-ruby-padrino
     params:
       path: cf-hello-worlds/ruby-padrino
@@ -55,7 +55,7 @@ jobs:
 - name: deploy-ruby-sinatra
   serial_groups: [apps]
   plan:
-  - aggregate: *plan-gets
+  - in_parallel: *plan-gets
   - put: deploy-ruby-sinatra
     params:
       path: cf-hello-worlds/ruby-sinatra
@@ -79,7 +79,7 @@ jobs:
 - name: deploy-nodejs
   serial_groups: [apps]
   plan:
-  - aggregate: *plan-gets
+  - in_parallel: *plan-gets
   - put: deploy-nodejs
     params:
       path: cf-hello-worlds/nodejs
@@ -103,7 +103,7 @@ jobs:
 - name: deploy-php
   serial_groups: [apps]
   plan:
-  - aggregate: *plan-gets
+  - in_parallel: *plan-gets
   - put: deploy-php
     params:
       path: cf-hello-worlds/php
@@ -127,7 +127,7 @@ jobs:
 - name: deploy-java
   serial_groups: [apps]
   plan:
-  - aggregate: *plan-gets
+  - in_parallel: *plan-gets
   - task: build
     file: cf-hello-worlds/java-see/build-java-see.yml
   - put: deploy-java
@@ -153,7 +153,7 @@ jobs:
 - name: deploy-dotnet-core
   serial_groups: [apps]
   plan:
-  - aggregate: *plan-gets
+  - in_parallel: *plan-gets
   - put: deploy-dotnet-core
     params:
       path: cf-hello-worlds/dotnet-core

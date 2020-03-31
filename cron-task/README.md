@@ -1,6 +1,6 @@
 # Running one-off tasks on cloud.gov
 
-This is an example of a one-off task that can be run on cloud.gov. More on how to do this can be [found in the docs](https://cloud.gov/docs/management/one-off-tasks/).
+This is an example of a one-off task that can be run on cloud.gov. More on how to do this can be [found in the docs](https://cloud.gov/docs/management/one-off-tasks/). Note, this example uses node.js, but you can use any language that has a cron-like library to do something similar.
 
 ## Usage
 

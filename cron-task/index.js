@@ -11,4 +11,4 @@ let runJob = () => console.log('*** Hello world every 30 seconds ***');
 // Set up the job and run it.   
 console.log("Starting one-off task");
 let job = new CronJob(schedule, () => runJob(), null, true, timezone);
-job.start()
+job.start();

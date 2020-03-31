@@ -5,3 +5,4 @@ vendor/
 local.yml
 .idea/
 .DS_Store
+.vscode

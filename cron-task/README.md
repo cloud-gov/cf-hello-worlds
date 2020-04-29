@@ -10,10 +10,23 @@ To run this app locally, use `npm start`. To deploy to cloud.gov, use the instru
 ~$ cf push -f manifest.yml --health-check-type none --no-route
 ```
 
+You can also add the `health-check-type` and `no-route` parameters to your manifest if it's easier:
+
+```yaml
+health-check-type: none
+no-route: true
+```
+
 When done, wait a few minutes for some log messages to show up, then check the logs:
 
 ```
 ~$ cf logs --recent task-runner
+```
+
+You can also check the status of tasks that have run:
+
+```
+cf tasks task-runner
 ```
 
 ## Clean up

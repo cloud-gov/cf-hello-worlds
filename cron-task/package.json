@@ -1,0 +1,15 @@
+{
+  "name": "cg-task-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["cron", "cloud"],
+  "author": "Mark Headd (mark.headd@gsa.gov)",
+  "license": "ISC",
+  "dependencies": {
+    "cron": "^1.8.2"
+  }
+}

@@ -19,14 +19,14 @@ no-route: true
 
 When done, wait a few minutes for some log messages to show up, then check the logs:
 
-```
+```bash
 ~$ cf logs --recent task-runner
 ```
 
 You can also check the status of tasks that have run:
 
-```
-cf tasks task-runner
+```bash
+~$ cf tasks task-runner
 ```
 
 ## Clean up

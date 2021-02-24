@@ -178,8 +178,8 @@ resources:
 - name: cf-hello-worlds
   type: git
   source:
-    uri: https://github.com/18F/cf-hello-worlds
-    branch: master
+    uri: https://github.com/cloud-gov/cf-hello-worlds
+    branch: main
 
 - name: timer
   type: time

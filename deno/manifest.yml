@@ -1,0 +1,8 @@
+---
+applications:
+- name: test-deno
+  random-route: true
+  buildpacks:
+    - binary_buildpack
+  memory: 128M
+  command: ./bin/main

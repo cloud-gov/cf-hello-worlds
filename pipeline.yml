@@ -174,6 +174,43 @@ jobs:
         :white_check_mark: Successfully deployed dotnet-core sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
+- name: deploy-deno
+  serial_groups: [apps]
+  plan:
+  - in_parallel: *plan-gets
+  - task: compile-deno
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: denoland/deno:alpine
+      inputs: [name: cf-hello-worlds]
+      outputs: [name: cf-hello-worlds]
+      run:
+        dir: cf-hello-worlds/deno
+        path: deno
+        args: [compile, --allow-net=0.0.0.0, --allow-env=PORT, -o bin/main, main.ts]
+  - put: deploy-deno
+    params:
+      path: cf-hello-worlds/deno
+      manifest: cf-hello-worlds/deno/manifest.yml
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy deno sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-params
+      channel: ((slack-news-channel))
+      text: |
+        :white_check_mark: Successfully deployed deno sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
 resources:
 - name: cf-hello-worlds
   type: git
@@ -217,6 +254,10 @@ resources:
   source: *cf-source
 
 - name: deploy-dotnet-core
+  type: cf
+  source: *cf-source
+
+- name: deploy-deno
   type: cf
   source: *cf-source
 

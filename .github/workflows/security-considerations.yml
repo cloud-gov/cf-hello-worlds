@@ -3,9 +3,10 @@ name: Security Considerations
 on:
   pull_request:
     types: [opened, edited, reopened]
+    branches: [main, master, develop]
 
 jobs:
   security-considerations:
     runs-on: ubuntu-latest
     steps:
-      - uses: cloud-gov/security-considerations-action
+      - uses: cloud-gov/security-considerations-action@main

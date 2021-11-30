@@ -4,9 +4,14 @@ jobs:
   plan:
   - in_parallel: &plan-gets
     - get: cf-hello-worlds
+      trigger: true
     - get: timer
       trigger: true
-  - put: deploy-python-flask
+  - put: deploy-python-flask-staging
+    params:
+      path: cf-hello-worlds/python-flask
+      manifest: cf-hello-worlds/python-flask/manifest.yml
+  - put: deploy-python-flask-production
     params:
       path: cf-hello-worlds/python-flask
       manifest: cf-hello-worlds/python-flask/manifest.yml
@@ -32,7 +37,11 @@ jobs:
   serial_groups: [apps]
   plan:
   - in_parallel: *plan-gets
-  - put: deploy-ruby-padrino
+  - put: deploy-ruby-padrino-staging
+    params:
+      path: cf-hello-worlds/ruby-padrino
+      manifest: cf-hello-worlds/ruby-padrino/manifest.yml
+  - put: deploy-ruby-padrino-production
     params:
       path: cf-hello-worlds/ruby-padrino
       manifest: cf-hello-worlds/ruby-padrino/manifest.yml
@@ -56,7 +65,11 @@ jobs:
   serial_groups: [apps]
   plan:
   - in_parallel: *plan-gets
-  - put: deploy-ruby-sinatra
+  - put: deploy-ruby-sinatra-staging
+    params:
+      path: cf-hello-worlds/ruby-sinatra
+      manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
+  - put: deploy-ruby-sinatra-production
     params:
       path: cf-hello-worlds/ruby-sinatra
       manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
@@ -80,7 +93,11 @@ jobs:
   serial_groups: [apps]
   plan:
   - in_parallel: *plan-gets
-  - put: deploy-nodejs
+  - put: deploy-nodejs-staging
+    params:
+      path: cf-hello-worlds/nodejs
+      manifest: cf-hello-worlds/nodejs/manifest.yml
+  - put: deploy-nodejs-production
     params:
       path: cf-hello-worlds/nodejs
       manifest: cf-hello-worlds/nodejs/manifest.yml
@@ -104,7 +121,11 @@ jobs:
   serial_groups: [apps]
   plan:
   - in_parallel: *plan-gets
-  - put: deploy-php
+  - put: deploy-php-staging
+    params:
+      path: cf-hello-worlds/php
+      manifest: cf-hello-worlds/php/manifest.yml
+  - put: deploy-php-production
     params:
       path: cf-hello-worlds/php
       manifest: cf-hello-worlds/php/manifest.yml
@@ -130,7 +151,11 @@ jobs:
   - in_parallel: *plan-gets
   - task: build
     file: cf-hello-worlds/java-see/build-java-see.yml
-  - put: deploy-java
+  - put: deploy-java-staging
+    params:
+      path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
+      manifest: cf-hello-worlds-build/java-see/manifest.yml
+  - put: deploy-java-production
     params:
       path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
@@ -154,7 +179,11 @@ jobs:
   serial_groups: [apps]
   plan:
   - in_parallel: *plan-gets
-  - put: deploy-dotnet-core
+  - put: deploy-dotnet-core-staging
+    params:
+      path: cf-hello-worlds/dotnet-core
+      manifest: cf-hello-worlds/dotnet-core/manifest.yml
+  - put: deploy-dotnet-core-staging
     params:
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
@@ -191,7 +220,11 @@ jobs:
         dir: cf-hello-worlds/deno
         path: deno
         args: [compile, --allow-net=0.0.0.0, --allow-env=PORT, -o bin/main, main.ts]
-  - put: deploy-deno
+  - put: deploy-deno-staging
+    params:
+      path: cf-hello-worlds/deno
+      manifest: cf-hello-worlds/deno/manifest.yml
+  - put: deploy-deno-production
     params:
       path: cf-hello-worlds/deno
       manifest: cf-hello-worlds/deno/manifest.yml
@@ -223,43 +256,81 @@ resources:
   source:
     interval: 24h
 
-- name: deploy-python-flask
+- name: deploy-python-flask-staging
   type: cf
-  source: &cf-source
-    api: ((cf-api-url))
-    username: ((cf-username))
-    password: ((cf-password))
-    organization: ((cf-organization))
-    space: ((cf-space))
+  source: &cf-source-staging
+    api: ((cf-api-url-staging))
+    username: ((cf-username-staging))
+    password: ((cf-password-staging))
+    organization: ((cf-organization-staging))
+    space: ((cf-space-staging))
     verbose: true
 
-- name: deploy-ruby-padrino
+- name: deploy-ruby-padrino-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
 
-- name: deploy-ruby-sinatra
+- name: deploy-ruby-sinatra-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
 
-- name: deploy-nodejs
+- name: deploy-nodejs-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
 
-- name: deploy-php
+- name: deploy-php-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
 
-- name: deploy-java
+- name: deploy-java-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
 
-- name: deploy-dotnet-core
+- name: deploy-dotnet-core-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
 
-- name: deploy-deno
+- name: deploy-deno-staging
   type: cf
-  source: *cf-source
+  source: *cf-source-staging
+
+- name: deploy-python-flask-production
+  type: cf
+  source: &cf-source-production
+    api: ((cf-api-url-production))
+    username: ((cf-username-production))
+    password: ((cf-password-production))
+    organization: ((cf-organization-production))
+    space: ((cf-space-production))
+    verbose: true
+
+- name: deploy-ruby-padrino-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-ruby-sinatra-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-nodejs-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-php-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-java-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-dotnet-core-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-deno-production
+  type: cf
+  source: *cf-source-production
 
 - name: slack
   type: slack-notification

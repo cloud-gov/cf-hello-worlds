@@ -183,7 +183,7 @@ jobs:
     params:
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
-  - put: deploy-dotnet-core-staging
+  - put: deploy-dotnet-core-production
     params:
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml

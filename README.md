@@ -2,7 +2,7 @@
 
 This repository contains minimal "Hello World" applications for a handful of different languages/frameworks for testing deployment to [cloud.gov](https://www.cloud.gov/), in particular, and other instances of [Cloud Foundry](https://www.cloudfoundry.org) ("CF") in general.
  
-For [cloud.gov](https://cloud.gov), follow the [quickstart guide](https://cloud.gov/quickstart/) for a guided tour, or follow the USAGE below.
+For [cloud.gov](https://cloud.gov), follow the [quickstart guide](https://cloud.gov/docs/getting-started/your-first-deploy/) for a guided tour, or follow the USAGE below.
 
 ## Usage
 

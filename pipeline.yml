@@ -250,6 +250,7 @@ resources:
   source:
     uri: https://github.com/cloud-gov/cf-hello-worlds
     branch: main
+    commit_verification_keys: ((cloud-gov-pgp-keys))
 
 - name: timer
   type: time

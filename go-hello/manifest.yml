@@ -4,5 +4,6 @@ applications:
   buildpacks:
   - go_buildpack
   random-route: true
+  stack: cflinuxfs4
   env:
     GOPACKAGENAME: go-hello

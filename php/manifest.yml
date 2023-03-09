@@ -3,5 +3,6 @@ applications:
 - name: test-php
   random-route: true
   memory: 256M
+  stack: cflinuxfs4
   buildpacks:
     - php_buildpack

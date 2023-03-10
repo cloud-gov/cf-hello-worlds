@@ -4,7 +4,7 @@ applications:
   random-route: true
   memory: 768M
   path: target/hello-world-0.0.1-SNAPSHOT.jar
-  stack: cflinuxfs4
+ 
   buildpacks:
   - https://github.com/cloudfoundry/java-buildpack#v4.19.1
   env:

@@ -2,7 +2,7 @@
 applications:
 - name: test-nodejs
   random-route: true
-  stack: cflinuxfs4
+ 
   buildpacks:
     - nodejs_buildpack
   memory: 256M

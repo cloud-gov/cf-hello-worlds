@@ -2,7 +2,6 @@
 applications:
 - name: test-dotnet-core
   random-route: true
-  stack: cflinuxfs4
   buildpacks:
     - dotnet_core_buildpack
   memory: 256M

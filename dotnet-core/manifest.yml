@@ -7,3 +7,4 @@ applications:
   memory: 256M
   env:
     CACHE_NUGET_PACKAGES: false
+    

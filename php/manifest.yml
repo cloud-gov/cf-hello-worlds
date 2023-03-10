@@ -3,6 +3,5 @@ applications:
 - name: test-php
   random-route: true
   memory: 256M
- 
   buildpacks:
     - php_buildpack

@@ -4,6 +4,5 @@ applications:
   buildpacks:
   - go_buildpack
   random-route: true
- 
   env:
     GOPACKAGENAME: go-hello

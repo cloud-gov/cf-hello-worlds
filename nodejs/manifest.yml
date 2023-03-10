@@ -2,7 +2,6 @@
 applications:
 - name: test-nodejs
   random-route: true
- 
   buildpacks:
     - nodejs_buildpack
   memory: 256M

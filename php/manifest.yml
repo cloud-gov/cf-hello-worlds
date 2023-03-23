@@ -5,3 +5,4 @@ applications:
   memory: 256M
   buildpacks:
     - php_buildpack
+  stack: cflinuxfs4

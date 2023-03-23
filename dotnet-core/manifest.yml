@@ -5,6 +5,7 @@ applications:
   buildpacks:
     - dotnet_core_buildpack
   memory: 256M
+  stack: cflinuxfs4
   env:
     CACHE_NUGET_PACKAGES: false
     

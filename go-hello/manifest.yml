@@ -6,3 +6,4 @@ applications:
   random-route: true
   env:
     GOPACKAGENAME: go-hello
+  stack: cflinuxfs4

@@ -5,4 +5,5 @@ applications:
   buildpacks:
     - ruby_buildpack
   memory: 256M
+  stack: cflinuxfs4
   

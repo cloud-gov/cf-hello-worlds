@@ -9,10 +9,30 @@ jobs:
       trigger: true
   - put: deploy-python-flask-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/python-flask
       manifest: cf-hello-worlds/python-flask/manifest.yml
   - put: deploy-python-flask-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/python-flask
       manifest: cf-hello-worlds/python-flask/manifest.yml
   on_failure:
@@ -39,10 +59,30 @@ jobs:
   - in_parallel: *plan-gets
   - put: deploy-ruby-padrino-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/ruby-padrino
       manifest: cf-hello-worlds/ruby-padrino/manifest.yml
   - put: deploy-ruby-padrino-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/ruby-padrino
       manifest: cf-hello-worlds/ruby-padrino/manifest.yml
   on_failure:
@@ -67,10 +107,30 @@ jobs:
   - in_parallel: *plan-gets
   - put: deploy-ruby-sinatra-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/ruby-sinatra
       manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
   - put: deploy-ruby-sinatra-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/ruby-sinatra
       manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
   on_failure:
@@ -95,10 +155,30 @@ jobs:
   - in_parallel: *plan-gets
   - put: deploy-nodejs-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/nodejs
       manifest: cf-hello-worlds/nodejs/manifest.yml
   - put: deploy-nodejs-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/nodejs
       manifest: cf-hello-worlds/nodejs/manifest.yml
   on_failure:
@@ -123,10 +203,30 @@ jobs:
   - in_parallel: *plan-gets
   - put: deploy-php-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/php
       manifest: cf-hello-worlds/php/manifest.yml
   - put: deploy-php-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/php
       manifest: cf-hello-worlds/php/manifest.yml
   on_failure:
@@ -153,10 +253,30 @@ jobs:
     file: cf-hello-worlds/java-see/build-java-see.yml
   - put: deploy-java-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
   - put: deploy-java-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
   on_failure:
@@ -181,10 +301,30 @@ jobs:
   - in_parallel: *plan-gets
   - put: deploy-dotnet-core-staging
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
   - put: deploy-dotnet-core-production
     params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          aws_access_key_id: ((ecr_aws_key))
+          aws_secret_access_key: ((ecr_aws_secret))
+          repository: harden-concourse-task
+          aws_region: us-gov-west-1
+          tag: ((harden-concourse-task-tag))
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
   on_failure:

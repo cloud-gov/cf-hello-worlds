@@ -5,6 +5,7 @@ applications:
   memory: 768M
   path: target/hello-world-0.0.1-SNAPSHOT.jar
   buildpacks:
-  - https://github.com/cloudfoundry/java-buildpack#v4.19.1
+  - https://github.com/cloudfoundry/java-buildpack#v4.56
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }}'
+  stack: cflinuxfs4

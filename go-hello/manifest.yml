@@ -3,7 +3,7 @@ applications:
 - name: go-hello
   buildpacks:
   - go_buildpack
-  random-route: true
   env:
-    GOPACKAGENAME: go-hello
+    GOVERSION: "1.20"
+  random-route: true
   stack: cflinuxfs4

@@ -26,16 +26,35 @@ Then follow the usual process for deploying:
 cf push
 ```
 
-## Adding a route for the `actuator`
+## Adding an internal route for the `actuator`
 
-First, create a new route to handle requests to the `actuator` component:
+First, map a new internal route to handle requests to the `actuator` component:
 
 ```shell
-cf create-route app.cloud.gov --hostname test-java-spring-actuator
+cf map-route test-java-spring-multiple-ports apps.internal --hostname test-java-spring-actuator
 ```
 
 Then, use the provided shell script to update the new route to listen on port `9001` (configured in `src/main/resources/application.properties`) for `actuator`:
 
 ```shell
 ./add-route-custom-port.sh <org> <space> test-java-spring-multiple-ports test-java-spring-actuator 9001
+```
+
+Restart the app so the route is properly handled:
+
+```shell
+cf restart test-java-spring-multiple-ports
+```
+
+Add a network policy allowing a separate app to reach the internal route for the `actuator`:
+
+```shell
+cf add-network-policy SOURCE_APP test-java-spring-multiple-ports -s DESTINATION_SPACE_NAME -o DESTINATION_ORG_NAME --protocol tcp --port 61443
+```
+
+You should now be able to successfully make a request to the health check endpoint for the `actuator` component:
+
+```shell
+$ curl https://test-java-spring-actuator.apps.internal/actuator/health
+{"status":"UP"}
 ```

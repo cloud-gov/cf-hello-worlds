@@ -1,0 +1,11 @@
+---
+applications:
+- name: test-java-spring-multiple-ports
+  random-route: true
+  buildpacks:
+    - java_buildpack
+  memory: 1G
+  path: target/java-spring-multiple-ports-0.0.1-SNAPSHOT.jar
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+ }}'
+  

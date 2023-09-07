@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>gov.cloud.eng</groupId>
-	<artifactId>java-spring-multiple-ports</artifactId>
+	<artifactId>java-spring-actuator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>java-spring-multiple-ports</name>
+	<name>java-spring-actuator</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

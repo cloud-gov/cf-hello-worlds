@@ -1,4 +1,4 @@
-# How to deploy the Java Spring - Multiple ports example app
+# How to deploy the Java Spring Actuator example app
 
 ## Build the application
 
@@ -23,7 +23,7 @@ First, use the following command to download all of the dependencies and create 
 Then follow the usual process for deploying:
 
 ```bash
-cf push
+cf push --var app-domain=app.cloud.gov
 ```
 
 ## Adding an internal route for the `actuator`
@@ -31,25 +31,25 @@ cf push
 First, map a new internal route to handle requests to the `actuator` component:
 
 ```shell
-cf map-route test-java-spring-multiple-ports apps.internal --hostname test-java-spring-actuator
+cf map-route test-java-spring-actuator apps.internal --hostname test-java-spring-actuator
 ```
 
 Then, use the provided shell script to update the new route to listen on port `9001` (configured in `src/main/resources/application.properties`) for `actuator`:
 
 ```shell
-./set-route-custom-port.sh <org> <space> test-java-spring-multiple-ports test-java-spring-actuator 9001
+./set-route-custom-port.sh <org> <space> test-java-spring-actuator test-java-spring-actuator 9001
 ```
 
 Restart the app so the route is properly handled:
 
 ```shell
-cf restart test-java-spring-multiple-ports
+cf restart test-java-spring-actuator
 ```
 
 Add a network policy allowing a separate app to reach the internal route for the `actuator`:
 
 ```shell
-cf add-network-policy SOURCE_APP test-java-spring-multiple-ports --protocol tcp --port 9001
+cf add-network-policy SOURCE_APP test-java-spring-actuator --protocol tcp --port 9001
 ```
 
 **Note: Unfortunately, you cannot use secure container-to-container networking with a port other than `8080`, [because the port for secure container traffic, `61443`, is specifically proxied to port `8080`](https://www.cloudfoundry.org/blog/secure-container-networking-with-tls/)**. So requests to this internal route for `actuator` will have to be made over HTTP.

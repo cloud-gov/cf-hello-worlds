@@ -2,8 +2,10 @@
 
 This example application demonstrates the ability to:
 
-- [use a custom port for a CloudFoundry application](https://docs.cloudfoundry.org/devguide/custom-ports.html)
-- [use multiple routes to connect to multiple ports opened by an application]
+- [route traffic to a custom port on a CloudFoundry application][custom-ports]
+- [use multiple routes to connect to multiple ports opened by an application][custom-ports]
+- [connect to an application using an internal route](https://docs.cloudfoundry.org/devguide/deploy-apps/routes-domains.html#internal-routes)
+- [use secure container-to-container networking with TLS][secure-c2c-with-tls]
 
 ## Build the application
 
@@ -58,7 +60,10 @@ First, use the following command to download all of the dependencies and create 
 
 ## Helpful resources
 
-- [Configuring Cloud Foundry to route traffic to apps on custom ports](https://docs.cloudfoundry.org/devguide/custom-ports.html)
+- [Configuring Cloud Foundry to route traffic to apps on custom ports][custom-ports]
 - [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
 - [Container to container networking in CloudFoundry](https://docs.cloudfoundry.org/concepts/understand-cf-networking.html)
-- [Securing Container-to-Container Networking with TLS](https://www.cloudfoundry.org/blog/secure-container-networking-with-tls/)
+- [Securing Container-to-Container Networking with TLS][secure-c2c-with-tls]
+
+[custom-ports]: https://docs.cloudfoundry.org/devguide/custom-ports.html
+[secure-c2c-with-tls]: https://www.cloudfoundry.org/blog/secure-container-networking-with-tls/

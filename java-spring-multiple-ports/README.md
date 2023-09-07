@@ -49,12 +49,14 @@ cf restart test-java-spring-multiple-ports
 Add a network policy allowing a separate app to reach the internal route for the `actuator`:
 
 ```shell
-cf add-network-policy SOURCE_APP test-java-spring-multiple-ports -s DESTINATION_SPACE_NAME -o DESTINATION_ORG_NAME --protocol tcp --port 61443
+cf add-network-policy SOURCE_APP test-java-spring-multiple-ports --protocol tcp --port 9001
 ```
 
-You should now be able to successfully make a request to the health check endpoint for the `actuator` component:
+**Note: Unfortunately, you cannot use secure container-to-container networking with a port other than `8080`, [because the port for secure container traffic, `61443`, is specifically proxied to port `8080`](https://www.cloudfoundry.org/blog/secure-container-networking-with-tls/)**. So requests to this internal route for `actuator` will have to be made over HTTP.
+
+Now, if you `cf ssh SOURCE_APP`, you should be able to successfully make a request to the health check endpoint for the `actuator` component:
 
 ```shell
-$ curl https://test-java-spring-actuator.apps.internal/actuator/health
+$ curl http://test-java-spring-actuator.apps.internal:9001/actuator/health
 {"status":"UP"}
 ```

@@ -37,7 +37,7 @@ cf map-route test-java-spring-multiple-ports apps.internal --hostname test-java-
 Then, use the provided shell script to update the new route to listen on port `9001` (configured in `src/main/resources/application.properties`) for `actuator`:
 
 ```shell
-./add-route-custom-port.sh <org> <space> test-java-spring-multiple-ports test-java-spring-actuator 9001
+./set-route-custom-port.sh <org> <space> test-java-spring-multiple-ports test-java-spring-actuator 9001
 ```
 
 Restart the app so the route is properly handled:

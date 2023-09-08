@@ -7,7 +7,7 @@ applications:
   memory: 1G
   path: target/java-spring-actuator-0.0.1-SNAPSHOT.jar
   routes:
-    - route: test-java-spring.((app-domain))
+    - route: test-java-spring-boot.((app-domain))
     - route: actuator.apps.internal
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+ }}'

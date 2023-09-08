@@ -33,10 +33,10 @@ First, use the following command to download all of the dependencies and create 
     cf push --var app-domain=app.cloud.gov
     ```
 
-2. Use the provided shell script to update the route for the Spring Boot application to listen on port `8081` (configured in [`manifest.yml`](./manifest.yml)):
+2. Use the provided shell script to update the route for the Spring Boot process to listen on port `8081` (configured in [`manifest.yml`](./manifest.yml)):
 
     ```shell
-    ./set-route-custom-port.sh <org> <space> test-java-spring-actuator test-java-spring 8081
+    ./set-route-custom-port.sh <org> <space> test-java-spring-actuator test-java-spring-boot 8081
     ```
 
 3. Restart the app so the route is properly handled:
@@ -45,18 +45,25 @@ First, use the following command to download all of the dependencies and create 
     cf restart test-java-spring-actuator
     ```
 
-4. Add a network policy allowing a separate app to reach the internal route for the `actuator`:
+4. Add a network policy allowing a separate app to reach the internal route for the Actuator process:
 
     ```shell
     cf add-network-policy SOURCE_APP test-java-spring-actuator --protocol tcp --port 61443
     ```
 
-5. Now, if you `cf ssh SOURCE_APP`, you should be able to successfully make a request to the health check endpoint for the `actuator` component:
+You should be able to successfully make a request to the route for the Spring Boot process:
 
-    ```shell
-    $ curl https://actuator.apps.internal:61443/actuator/health
-    {"status":"UP"}
-    ```
+```shell
+$ curl https://test-java-spring-boot.app.cloud.gov/
+Greetings from cloud.gov!
+```
+
+And if you `cf ssh SOURCE_APP`, you should be able to successfully make a request to the health check endpoint for the Acutator component:
+
+```shell
+$ curl https://actuator.apps.internal:61443/actuator/health
+{"status":"UP"}
+```
 
 ## How it works
 
@@ -89,7 +96,7 @@ There are two processes running in the `test-java-spring-actuator` app:
 
 Traffic is routed to the processes as follows:
 
-- Requests to the route `test-java-spring.app.cloud.gov` go over the public internet and hit the Gorouter, which directs the request to port `8081` on the `test-java-spring-actuator` app (based on the change we made using [`set-route-custom-port.sh`](./set-route-custom-port.sh))
+- Requests to the route `test-java-spring.app.cloud.gov` go over the public internet and hit the Gorouter, which directs the request to port `8081` on the `test-java-spring-actuator` app. By default, a route would usually go to port `8080` on the app, but we updated the route to use port `8081` using the [`set-route-custom-port.sh`](./set-route-custom-port.sh) script.
 - Requests to the route `actuator.apps.internal:61443` from a separate application go through a container overlay network to the `test-java-spring-actuator` app. These requests **do not go out to the public internet**. By default, [requests to port `61443` for secure container-to-container networking are proxied to port `8080`](secure-c2c-with-tls), so the request hits port `8080` in the container and thus the Actuator process.
 
 ## Helpful resources

@@ -5,7 +5,7 @@ jobs:
     - get: cf-hello-worlds
       trigger: true
     - set_pipeline: self
-      file: cf-hello-worlds/ci/pipeline.yml
+      file: cf-hello-worlds/pipeline.yml
 
 - name: deploy-python-flask
   serial_groups: [apps]

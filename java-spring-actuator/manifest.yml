@@ -1,0 +1,18 @@
+---
+applications:
+- name: test-java-spring-actuator
+  random-route: true
+  buildpacks:
+    - java_buildpack
+  memory: 1G
+  path: target/java-spring-actuator-0.0.1-SNAPSHOT.jar
+  routes:
+    - route: test-java-spring-boot.((app-domain))
+    - route: actuator.apps.internal
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+ }}'
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    # Required to override SERVER_PORT env var set by buildpack and load
+    # default Spring application on port 8081
+    SPRING_APPLICATION_JSON: '{"server.port":8081}'
+  

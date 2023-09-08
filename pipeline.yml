@@ -1,10 +1,19 @@
 jobs:
+
+- name: set-self
+  plan:
+    - get: cf-hello-worlds
+      trigger: true
+    - set_pipeline: self
+      file: cf-hello-worlds/ci/pipeline.yml
+
 - name: deploy-python-flask
   serial_groups: [apps]
   plan:
   - in_parallel: &plan-gets
     - get: cf-hello-worlds
       trigger: true
+      passed: [set-self]
     - get: timer
       trigger: true
   - put: deploy-python-flask-staging
@@ -41,14 +50,14 @@ jobs:
       text: |
         :x: Failed to deploy python-flask sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-      channel: ((slack-channel))
+      channel: ((slack-failure-channel))
       username: ((slack-username))
       icon_url: ((slack-icon-url))
   on_success:
     put: slack
-    params:
+    params: &slack-success-params
       <<: *slack-params
-      channel: ((slack-news-channel))
+      channel: ((slack-success-channel))
       text: |
         :white_check_mark: Successfully deployed python-flask sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -95,8 +104,7 @@ jobs:
   on_success:
     put: slack
     params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
+      <<: *slack-success-params
       text: |
         :white_check_mark: Successfully deployed ruby-padrino sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -143,8 +151,7 @@ jobs:
   on_success:
     put: slack
     params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
+      <<: *slack-success-params
       text: |
         :white_check_mark: Successfully deployed ruby-sinatra sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -191,8 +198,7 @@ jobs:
   on_success:
     put: slack
     params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
+      <<: *slack-success-params
       text: |
         :white_check_mark: Successfully deployed nodejs sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -239,8 +245,7 @@ jobs:
   on_success:
     put: slack
     params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
+      <<: *slack-success-params
       text: |
         :white_check_mark: Successfully deployed php sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -289,8 +294,7 @@ jobs:
   on_success:
     put: slack
     params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
+      <<: *slack-success-params
       text: |
         :white_check_mark: Successfully deployed java sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
@@ -337,51 +341,9 @@ jobs:
   on_success:
     put: slack
     params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
+      <<: *slack-success-params
       text: |
         :white_check_mark: Successfully deployed dotnet-core sample app
-        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-
-- name: deploy-deno
-  serial_groups: [apps]
-  plan:
-  - in_parallel: *plan-gets
-  - task: compile-deno
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source:
-          repository: denoland/deno:alpine
-      inputs: [name: cf-hello-worlds]
-      outputs: [name: cf-hello-worlds]
-      run:
-        dir: cf-hello-worlds/deno
-        path: deno
-        args: [compile, --allow-net=0.0.0.0, --allow-env=PORT, -o bin/main, main.ts]
-  - put: deploy-deno-staging
-    params:
-      path: cf-hello-worlds/deno
-      manifest: cf-hello-worlds/deno/manifest.yml
-  - put: deploy-deno-production
-    params:
-      path: cf-hello-worlds/deno
-      manifest: cf-hello-worlds/deno/manifest.yml
-  on_failure:
-    put: slack
-    params:
-      <<: *slack-params
-      text: |
-        :x: Failed to deploy deno sample app
-        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-  on_success:
-    put: slack
-    params:
-      <<: *slack-params
-      channel: ((slack-news-channel))
-      text: |
-        :white_check_mark: Successfully deployed deno sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
 resources:
@@ -400,7 +362,7 @@ resources:
 - name: deploy-python-flask-staging
   type: cf
   source: &cf-source-staging
-    api: ((cf-api-url-staging))
+    api: ((staging-cf-api-url))
     username: ((cf-username-staging))
     password: ((cf-password-staging))
     organization: ((cf-organization-staging))
@@ -431,14 +393,10 @@ resources:
   type: cf
   source: *cf-source-staging
 
-- name: deploy-deno-staging
-  type: cf
-  source: *cf-source-staging
-
 - name: deploy-python-flask-production
   type: cf
   source: &cf-source-production
-    api: ((cf-api-url-production))
+    api: ((prod-cf-api-url))
     username: ((cf-username-production))
     password: ((cf-password-production))
     organization: ((cf-organization-production))
@@ -466,10 +424,6 @@ resources:
   source: *cf-source-production
 
 - name: deploy-dotnet-core-production
-  type: cf
-  source: *cf-source-production
-
-- name: deploy-deno-production
   type: cf
   source: *cf-source-production
 

@@ -362,7 +362,7 @@ resources:
 - name: deploy-python-flask-staging
   type: cf
   source: &cf-source-staging
-    api: ((cf-api-url-staging))
+    api: ((staging-cf-api-url))
     username: ((cf-username-staging))
     password: ((cf-password-staging))
     organization: ((cf-organization-staging))
@@ -396,7 +396,7 @@ resources:
 - name: deploy-python-flask-production
   type: cf
   source: &cf-source-production
-    api: ((cf-api-url-production))
+    api: ((prod-cf-api-url))
     username: ((cf-username-production))
     password: ((cf-password-production))
     organization: ((cf-organization-production))

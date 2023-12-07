@@ -1,3 +1,4 @@
 applications:
 - name: test-static
   buildpack: staticfile_buildpack
+  random-route: true

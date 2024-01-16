@@ -4,7 +4,7 @@ This repository contains minimal "Hello World" applications for a handful of dif
  
 For [cloud.gov](https://cloud.gov), follow the [quickstart guide](https://cloud.gov/docs/getting-started/your-first-deploy/) for a guided tour, or follow the USAGE below.
 
-## Usage
+## Usage 
 
 All of these examples, except Java, have the same usage. For Java, see its [INSTRUCTIONS.md](./java-see-instructions/INSTRUCTIONS.md).
 

@@ -14,6 +14,3 @@ inputs:
 
 run:
   path: cf-hello-worlds/python-flask/check-dependencies.sh
-
-outputs:
-- {name: check-dependencies}

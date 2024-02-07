@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 echo "about to compile requirements.in"
 pip3 install pip-tools

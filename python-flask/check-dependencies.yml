@@ -9,15 +9,8 @@ image_resource:
     repository: harden-concourse-task
     aws_region: us-gov-west-1
     tag: ((harden-concourse-task-tag))
-    run:
-      path: sh
-      args:
-      - -c
-      - |
-        echo "about to compile requirements.in"
-        pip3 install pip-tools
-        python3 -m piptools compile \
-        --quiet \
-        --output-file=requirements.txt \
-        requirements.in
-        echo "done compiling requirements"
+inputs:
+- {name: cf-hello-worlds}
+
+run:
+  path: cf-hello-worlds/python-flask/check-dependencies.sh

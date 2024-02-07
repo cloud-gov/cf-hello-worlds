@@ -5,5 +5,5 @@ pip3 install pip-tools
 python3 -m piptools compile \
 --quiet \
 --output-file=requirements.txt \
-requirements.in
+./requirements.in
 echo "done compiling requirements"

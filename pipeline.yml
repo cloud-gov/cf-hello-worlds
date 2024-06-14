@@ -64,53 +64,6 @@ jobs:
         :white_check_mark: Successfully deployed python-flask sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
-- name: deploy-ruby-padrino
-  serial_groups: [apps]
-  plan:
-  - in_parallel: *plan-gets
-  - put: deploy-ruby-padrino-staging
-    params:
-      config:
-        platform: linux
-      image_resource:
-        type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
-      path: cf-hello-worlds/ruby-padrino
-      manifest: cf-hello-worlds/ruby-padrino/manifest.yml
-  - put: deploy-ruby-padrino-production
-    params:
-      config:
-        platform: linux
-      image_resource:
-        type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
-      path: cf-hello-worlds/ruby-padrino
-      manifest: cf-hello-worlds/ruby-padrino/manifest.yml
-  on_failure:
-    put: slack
-    params:
-      <<: *slack-params
-      text: |
-        :x: Failed to deploy ruby-padrino sample app
-        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-  on_success:
-    put: slack
-    params:
-      <<: *slack-success-params
-      text: |
-        :white_check_mark: Successfully deployed ruby-padrino sample app
-        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
-
 - name: deploy-ruby-sinatra
   serial_groups: [apps]
   plan:
@@ -369,11 +322,6 @@ resources:
     password: ((cf-password-staging))
     organization: ((cf-organization-staging))
     space: ((cf-space-staging))
-    verbose: true
-
-- name: deploy-ruby-padrino-staging
-  type: cf
-  source: *cf-source-staging
 
 - name: deploy-ruby-sinatra-staging
   type: cf
@@ -403,11 +351,6 @@ resources:
     password: ((cf-password-production))
     organization: ((cf-organization-production))
     space: ((cf-space-production))
-    verbose: true
-
-- name: deploy-ruby-padrino-production
-  type: cf
-  source: *cf-source-production
 
 - name: deploy-ruby-sinatra-production
   type: cf

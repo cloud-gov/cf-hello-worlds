@@ -4,6 +4,6 @@ applications:
   random-route: true
   buildpacks:
     - python_buildpack
-  memory: 256
+  memory: 256M
   stack: cflinuxfs4
 

@@ -24,12 +24,12 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
+        source: &general-task
           aws_access_key_id: ((ecr_aws_key))
           aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
+          repository: general-task
           aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+          tag: latest
       path: cf-hello-worlds/python-flask
       manifest: cf-hello-worlds/python-flask/manifest.yml
   - put: deploy-python-flask-production
@@ -38,12 +38,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/python-flask
       manifest: cf-hello-worlds/python-flask/manifest.yml
   on_failure:
@@ -74,12 +69,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/ruby-sinatra
       manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
   - put: deploy-ruby-sinatra-production
@@ -88,12 +78,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/ruby-sinatra
       manifest: cf-hello-worlds/ruby-sinatra/manifest.yml
   on_failure:
@@ -121,12 +106,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/nodejs
       manifest: cf-hello-worlds/nodejs/manifest.yml
   - put: deploy-nodejs-production
@@ -135,12 +115,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/nodejs
       manifest: cf-hello-worlds/nodejs/manifest.yml
   on_failure:
@@ -168,12 +143,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/php
       manifest: cf-hello-worlds/php/manifest.yml
   - put: deploy-php-production
@@ -182,12 +152,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/php
       manifest: cf-hello-worlds/php/manifest.yml
   on_failure:
@@ -217,12 +182,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
   - put: deploy-java-production
@@ -231,12 +191,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
       manifest: cf-hello-worlds-build/java-see/manifest.yml
   on_failure:
@@ -264,12 +219,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
   - put: deploy-dotnet-core-production
@@ -278,12 +228,7 @@ jobs:
         platform: linux
       image_resource:
         type: registry-image
-        source:
-          aws_access_key_id: ((ecr_aws_key))
-          aws_secret_access_key: ((ecr_aws_secret))
-          repository: harden-concourse-task
-          aws_region: us-gov-west-1
-          tag: ((harden-concourse-task-tag))
+        source: *general-task
       path: cf-hello-worlds/dotnet-core
       manifest: cf-hello-worlds/dotnet-core/manifest.yml
   on_failure:

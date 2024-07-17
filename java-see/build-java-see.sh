@@ -6,9 +6,10 @@ export TERM=${TERM:-dumb}
 
 wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
 tar -xvf jdk-22_linux-x64_bin.tar.gz
-mv jdk-22.0.1 /opt/
+VERSION=$(find . -maxdepth 1 -mindepth 1 -name  "jdk-22.*" | sed 's/^..//')
+mv $VERSION /opt/
 
-JAVA_HOME='/opt/jdk-22.0.1'
+JAVA_HOME="/opt/${VERSION}"
 export JAVA_HOME
 PATH="JAVA_HOME/bin:$PATH"
 export PATH

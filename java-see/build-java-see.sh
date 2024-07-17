@@ -6,7 +6,7 @@ export TERM=${TERM:-dumb}
 
 wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
 tar -xvf jdk-22_linux-x64_bin.tar.gz
-TEST=$(find . -maxdepth 1 -mindepth 1 -name  "jdk-22.*"):2
+TEST=$(find . -maxdepth 1 -mindepth 1 -name  "jdk-22.*" | sed 's/^..//')
 echo $TEST
 mv jdk-22.0.2 /opt/
 

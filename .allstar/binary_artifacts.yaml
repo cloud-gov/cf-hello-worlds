@@ -1,0 +1,4 @@
+# Ignore reason: These files are used for the Maven wrapper, which is useful
+ignorePaths:
+- java-see/.mvn/wrapper/maven-wrapper.jar
+- java-spring-actuator/.mvn/wrapper/maven-wrapper.jar

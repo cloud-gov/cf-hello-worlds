@@ -4,9 +4,9 @@ set -ex
 
 export TERM=${TERM:-dumb}
 
-wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.tar.gz
-tar -xvf jdk-22_linux-x64_bin.tar.gz
-VERSION=$(find . -maxdepth 1 -mindepth 1 -name  "jdk-22.*" | sed 's/^..//')
+wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz
+tar -xvf jdk-21_linux-x64_bin.tar.gz
+VERSION=$(find . -maxdepth 1 -mindepth 1 -name  "jdk-21.*" | sed 's/^..//')
 mv $VERSION /opt/
 
 JAVA_HOME="/opt/${VERSION}"

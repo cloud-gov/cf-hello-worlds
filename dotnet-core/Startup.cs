@@ -28,7 +28,7 @@ namespace dot_net_gov
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World from .Net Core 6.0!");
+                    await context.Response.WriteAsync("Hello World from .Net Core 8.0!");
                 });
             });
         }

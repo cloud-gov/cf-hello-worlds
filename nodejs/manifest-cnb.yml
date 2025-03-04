@@ -7,3 +7,5 @@ applications:
   - docker://gcr.io/paketo-buildpacks/nodejs
   memory: 256M
   stack: cflinuxfs4
+  env:
+    LIFECYCLE: "CNB_V3"

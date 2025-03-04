@@ -1,5 +1,7 @@
 const express = require('express');
 const port = process.env.PORT || 8080;
+const os = require('os');
+const lifecycle = process.env.LIFECYCLE || 'not_set'
 
 const app = express();
 
@@ -13,12 +15,10 @@ app.get('/', (request, response) => {
   response.send(`<!DOCTYPE html>
 <html>
   <head>
-    <title>Powered By Paketo Buildpacks</title>
+    <title>Powered By ${lifecycle} Buildpacks</title>
   </head>
   <body>
-    <img style="display: block; margin-left: auto; margin-right: auto; width: 50%;" src="https://paketo.io/images/paketo-logo-full-color.png"></img>
-
-    <p>CNB on CloudFounddry</p>
+    <p>Hello World from NodeJS on port ${port} from container ${os.hostname()} with ${lifecycle} buildpacks</p>
   </body>
 </html>`);
 });

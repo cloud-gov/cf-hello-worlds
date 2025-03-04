@@ -9,4 +9,4 @@ local.yml
 bin
 obj
 java-*/target
-node-modules/
+node_modules

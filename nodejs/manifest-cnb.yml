@@ -1,0 +1,9 @@
+---
+applications:
+- name: test-nodejs-cnb
+  random-route: true
+  lifecycle: cnb
+  buildpacks:
+  - docker://gcr.io/paketo-buildpacks/nodejs
+  memory: 256M
+  stack: cflinuxfs4

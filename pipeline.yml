@@ -313,6 +313,10 @@ resources:
   type: cf
   source: *cf-source-staging
 
+- name: deploy-nodejs-cnb-staging
+  type: cf
+  source: *cf-source-staging
+
 - name: deploy-php-staging
   type: cf
   source: *cf-source-staging
@@ -339,6 +343,10 @@ resources:
   source: *cf-source-production
 
 - name: deploy-nodejs-production
+  type: cf
+  source: *cf-source-production
+
+- name: deploy-nodejs-cnb-production
   type: cf
   source: *cf-source-production
 

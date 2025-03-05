@@ -133,6 +133,43 @@ jobs:
         :white_check_mark: Successfully deployed nodejs sample app
         <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
+- name: deploy-nodejs-cnb
+  serial_groups: [apps]
+  plan:
+  - in_parallel: *plan-gets
+  - put: deploy-nodejs-cnb-staging
+    params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source: *general-task
+      path: cf-hello-worlds/nodejs
+      manifest: cf-hello-worlds/nodejs/manifest-cnb.yml
+  - put: deploy-nodejs-cnb-production
+    params:
+      config:
+        platform: linux
+      image_resource:
+        type: registry-image
+        source: *general-task
+      path: cf-hello-worlds/nodejs
+      manifest: cf-hello-worlds/nodejs/manifest-cnb.yml
+  on_failure:
+    put: slack
+    params:
+      <<: *slack-params
+      text: |
+        :x: Failed to deploy nodejs CNB sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+  on_success:
+    put: slack
+    params:
+      <<: *slack-success-params
+      text: |
+        :white_check_mark: Successfully deployed nodejs CNB sample app
+        <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
 - name: deploy-php
   serial_groups: [apps]
   plan:

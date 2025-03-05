@@ -6,3 +6,5 @@ applications:
     - nodejs_buildpack
   memory: 256M
   stack: cflinuxfs4
+  env:
+    LIFECYCLE: "CLASSIC_V2"

@@ -1,4 +1,4 @@
 
 # Run every 10 seconds, for a sample app
-*/10 * * * * * * curl -s https://sample-app-active-chipmunk-re.apps.cloud.gov/ 1>/dev/null 2>/dev/null
+*/10 * * * * * * curl -s https://sample-app.app.cloud.gov/ 1>/dev/null 2>/dev/null
 

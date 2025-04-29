@@ -1,6 +1,6 @@
 # Running Cron Jobs on Cloud Foundry
 
-## Note: originally from https://github.com/meshcloud/cf-cron
+## Note: originally from https://github.com/meshcloud/cf-cron, 
 
 ## Notes
 
@@ -14,20 +14,21 @@ This application is built using the binary buildpack and executes `supercronic` 
 
 > Note: By default, `supercronic` will log [all output to stderr](https://github.com/aptible/supercronic/issues/16) so we redirect that to stdout in our cf manifest. 
 
-You can also include additional scripts and binaries to execute more complex actions. This example allows you to install apt and debian packages to use in your cronjobs. You can specify these packages in `apt.yml` and they will be installed during staging by [apt-buildpack](https://github.com/cloudfoundry/apt-buildpack)
-courtesy of the magic [multi-buildpack](https://github.com/cloudfoundry/multi-buildpack).
+You can also include additional scripts and binaries to execute more complex actions.
 
-After `cf push`ing this sample app to Cloud Foundry, you can see that it happily executes the jobs from the `crontab` in the log output: 
-```
-   2018-03-05T10:59:00.00+0100 [APP/PROC/WEB/0] OUT time="2018-03-05T09:59:00Z" level=info msg=starting iteration=237 job.command="echo "hello world, every 2 seconds"" job.position=1 job.schedule="*/2 * * * * * *" 
-   2018-03-05T10:59:00.00+0100 [APP/PROC/WEB/0] OUT time="2018-03-05T09:59:00Z" level=info msg="hello world, every 2 seconds" channel=stdout iteration=237 job.command="echo "hello world, every 2 seconds"" job.position=1 job.schedule="*/2 * * * * * *" 
-   2018-03-05T10:59:00.00+0100 [APP/PROC/WEB/0] OUT time="2018-03-05T09:59:00Z" level=info msg="job succeeded" iteration=237 job.command="echo "hello world, every 2 seconds"" job.position=1 job.schedule="*/2 * * * * * *" 
-   2018-03-05T10:59:00.05+0100 [APP/PROC/WEB/0] OUT time="2018-03-05T09:59:00Z" level=info msg="cf version 6.34.1+bbdf81482.2018-01-17" channel=stdout iteration=7 job.command="cf --version" job.position=0 job.schedule="*/1 * * * *" 
-   2018-03-05T10:59:00.05+0100 [APP/PROC/WEB/0] OUT time="2018-03-05T09:59:00Z" level=info msg="job succeeded" iteration=7 job.command="cf --version" job.position=0 job.schedule="*/1 * * * *" 
+After `cf push`ing this sample app to Cloud Foundry, you can see that it happily executes the jobs from the `crontab` in the log output:
+
+```text
+Apr 18, 2025 @ 13:51:29.911 {"level":"info","msg":"read crontab: ./crontab","time":"2025-04-18T17:51:29Z"}
+Apr 18, 2025 @ 14:00:00.099 {"iteration":0,"job.command":"curl -s https://logs-workshop.app.cloud.gov/ 1\u003e/dev/null 2\u003e/dev/null","job.position":0,"job.schedule":"*/10 00-19,30-49 * * * * *","level":"info","msg":"starting","time":"2025-04-18T18:00:00Z"}
+Apr 18, 2025 @ 14:00:00.237 {"iteration":0,"job.command":"curl -s https://logs-workshop.app.cloud.gov/ 1\u003e/dev/null 2\u003e/dev/null","job.position":0,"job.schedule":"*/10 00-19,30-49 * * * * *","level":"info","msg":"job succeeded","time":"2025-04-18T18:00:00Z"}
 ```
 
-## Running Sceduled Tasks on Cloud Foundry
+## Maintaining Supercronic
+
+The binary for Supercronic comes from  https://github.com/aptible/supercronic/releases, and you should check the periodically for updates.
+
+## Running Scheduled Tasks on Cloud Foundry
 
 While the cron container here is designed to be small and lightweight, you may want to use it to trigger more resource intensive tasks and processes. When a simple `curl` to an http endpoint is not enough to kick off such a task on your existing app, [Cloud Foundry Tasks](https://docs.cloudfoundry.org/devguide/using-tasks.html) are a great solution to run these processes. 
 
-This sample repository thus includes instructions to install the `cf` cli tool which you can use to trigger such a task using a [Meshcloud Service User](https://meshcloud.gitbooks.io/meshcloud/content/meshcloud/service-user.html).

@@ -1,0 +1,10 @@
+---
+applications:
+- name: cf-cron
+  memory: 256M
+  no-route: true
+  health-check-type: process
+  buildpacks:
+      - binary_buildpack
+  command:  ./supercronic -passthrough-logs -json ./crontab 2>&1
+

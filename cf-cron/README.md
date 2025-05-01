@@ -2,9 +2,17 @@
 
 ## Note: originally from https://github.com/meshcloud/cf-cron, 
 
+## Quickstart
+
+* Edit the `crontab` to do what you want,
+* Download, checksum, and chmod the `supercronic` binary:  
+    `make`
+* Push the app:  
+    `cf push`
+
 ## Notes
 
-This repository demonstrates how to run scheduled tasks on Cloud Foundry with a very small footprint (8 to 16 MB RAM) using a traditional crontab. This means you can run it for a few cents of monthly cost 
+This repository demonstrates how to run scheduled tasks on Cloud Foundry with a very small footprint (8 to 16 MB RAM) using a traditional crontab. This means you can run it for a few cents of monthly cost.
 
 Traditional cron daemons need to run as root and have opinionated defaults for logging and error notifications. This makes them unsuitable for running in a containerized environment like Cloud Foundry. Instead of a system cron daemon we're thus using [supercronic](https://github.com/aptible/supercronic) to run our cron tab. 
 

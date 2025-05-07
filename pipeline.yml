@@ -15,8 +15,6 @@ jobs:
             passed: [set-self]
           - get: timer
             trigger: true
-      - task: update-dependencies
-        file: cf-hello-worlds/python-flask/check-dependencies.yml
       - put: deploy-python-flask-staging
         params:
           config:

@@ -4,7 +4,7 @@ applications:
   random-route: true
   lifecycle: cnb
   buildpacks:
-  - docker://docker.io/paketo-buildpacks/nodejs
+  - docker://docker.io/paketobuildpacks/nodejs
   memory: 256M
   stack: cflinuxfs4
   env:

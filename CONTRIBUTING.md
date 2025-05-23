@@ -1,15 +1,19 @@
-## Welcome!
+**Contribution Policy**
 
-We're so glad you're thinking about contributing to an 18F open source project! If you're unsure or afraid of anything, just ask or submit the issue or pull request anyways. The worst that can happen is that you'll be politely asked to change something. We appreciate any sort of contribution, and don't want a wall of rules to get in the way of that.
+Cloud.gov is an open source project operated by the U.S. General Services Administration (GSA) to support federal agency missions. While we value transparency and collaboration, we must balance openness with the responsibilities of operating a secure, compliant, and trusted federal platform.
 
-Before contributing, we encourage you to read our CONTRIBUTING policy (you are here), our LICENSE, and our README, all of which should be in this repository. If you have any questions, or want to read more about our underlying policies, you can consult the 18F Open Source Policy GitHub repository at https://github.com/18f/open-source-policy, or just shoot us an email/official government letterhead note to [18f@gsa.gov](mailto:18f@gsa.gov).
+✅ **Who can contribute**
+We welcome contributions from:
 
-## Public domain
+- Employees of U.S. federal agencies
+- Contractors working under a current agreement with a U.S. government entity
+- GSA-approved contributors as part of official interagency collaboration
 
-This project is in the public domain within the United States, and
-copyright and related rights in the work worldwide are waived through
-the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+❌ **Who we cannot accept contributions from**
+To avoid the appearance of government endorsement, manage supply chain risk, and maintain the integrity of our compliance posture, we do **not** accept unsolicited contributions from:
 
-All contributions to this project will be released under the CC0
-dedication. By submitting a pull request, you are agreeing to comply
-with this waiver of copyright interest.
+- Individuals unaffiliated with the U.S. government
+- International contributors or organizations
+- Unvetted accounts or first-time contributors submitting minor changes
+
+If you're unsure whether your contribution fits, feel free to open an issue first so we can discuss it.

@@ -9,7 +9,7 @@ socket.on("connect", () => {
 });
 
 socket.on("message", (msg) => {
-  console.log(msg)
+  console.log(`received message: ${msg}`)
 })
 
 socket.on("data", (...f) => { console.log(f) });

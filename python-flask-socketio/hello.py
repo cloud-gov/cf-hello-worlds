@@ -28,20 +28,6 @@ def handle_message(data):
     print("received message: " + data)
 
 
-@socketio.on("join")
-def on_join(data):  # noqa: F401
-    room = data.get("room")
-    join_room(room)
-    current_app.logger.info(f"Socket {request.sid} joined room {room}")
-
-
-@socketio.on("leave")
-def on_leave(data):  # noqa: F401
-    room = data.get("room")
-    leave_room(room)
-    current_app.logger.info(f"Socket {request.sid} left room {room}")
-
-
 @socketio.on_error_default
 def default_error_handler(e):
     print(e)

@@ -1,17 +1,16 @@
 import os
 from flask import Flask, current_app, request
-from flask_socketio import SocketIO, join_room, leave_room, send
+from flask_socketio import SocketIO, send
 
 port = os.getenv("PORT", "5000")
-
 app = Flask(__name__)
 app.debug = True
-socketio = SocketIO(app, logger=True, engineio_logger=True, cors_allowed_origins="*")
+socketio = SocketIO(app, logger=True, engineio_logger=True)
 
 
 @socketio.on("connect")
 def on_connect():
-    send("TESTING")
+    send("Hello from the server!")
     current_app.logger.info(
         f"Socket {request.sid} connected from {request.environ.get('HTTP_ORIGIN')}"
     )
@@ -31,8 +30,8 @@ def handle_message(data):
 @socketio.on_error_default
 def default_error_handler(e):
     print(e)
-    print(request.event["message"])  # "my error event"
-    print(request.event["args"])  # (data,)
+    print(request.event["message"])
+    print(request.event["args"])
 
 
 @socketio.on_error

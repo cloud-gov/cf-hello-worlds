@@ -1,0 +1,9 @@
+---
+applications:
+- name: test-python-flask-socketio
+  random-route: true
+  buildpacks:
+    - python_buildpack
+  memory: 256M
+  stack: cflinuxfs4
+

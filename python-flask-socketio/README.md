@@ -38,7 +38,7 @@ need.  See also: [Cloud.gov Quickstart](https://cloud.gov/docs/getting-started/y
 If you see output like:
 
   ```shell
-  received message: TESTING
+  received message: Hello from the server!
   Sent message: Hi there!
   ```
 

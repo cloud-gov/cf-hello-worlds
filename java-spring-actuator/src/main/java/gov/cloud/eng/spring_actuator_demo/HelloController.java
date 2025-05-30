@@ -1,4 +1,4 @@
-package gov.cloud.eng.helloworld;
+package gov.cloud.eng.spring_actuator_demo;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

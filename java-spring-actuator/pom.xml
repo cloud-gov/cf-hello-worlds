@@ -12,7 +12,7 @@
 	<artifactId>java-spring-actuator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>java-spring-actuator</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot + Actuator</description>
 
 	<properties>
 		<java.version>17</java.version>

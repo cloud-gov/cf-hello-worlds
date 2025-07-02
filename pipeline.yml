@@ -118,15 +118,15 @@ jobs:
     plan:
       - in_parallel: *plan-gets
       - task: build
-        file: cf-hello-worlds/java-see/build-java-see.yml
+        file: cf-hello-worlds/java-hello/build-java-hello.yml
       - put: deploy-java-staging
         params:
-          path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
-          manifest: cf-hello-worlds-build/java-see/manifest.yml
+          path: cf-hello-worlds-build/java-hello/target/hello-world-0.0.1-SNAPSHOT.jar
+          manifest: cf-hello-worlds-build/java-hello/manifest.yml
       - put: deploy-java-production
         params:
-          path: cf-hello-worlds-build/java-see/target/hello-world-0.0.1-SNAPSHOT.jar
-          manifest: cf-hello-worlds-build/java-see/manifest.yml
+          path: cf-hello-worlds-build/java-hello/target/hello-world-0.0.1-SNAPSHOT.jar
+          manifest: cf-hello-worlds-build/java-hello/manifest.yml
     on_failure:
       put: slack
       params:

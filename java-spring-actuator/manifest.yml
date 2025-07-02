@@ -15,4 +15,4 @@ applications:
     # Required to override SERVER_PORT env var set by buildpack and load
     # default Spring application on port 8081
     SPRING_APPLICATION_JSON: '{"server.port":8081}'
-  
+

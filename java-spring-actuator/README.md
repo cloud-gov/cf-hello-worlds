@@ -62,7 +62,7 @@ And if you `cf ssh SOURCE_APP`, you should be able to successfully make a reques
 
 ```shell
 $ curl https://actuator.apps.internal:61443/actuator/health
-{"status":"UP"}
+{"status":"UP","groups":["liveness","readiness"]}
 ```
 
 ## How it works

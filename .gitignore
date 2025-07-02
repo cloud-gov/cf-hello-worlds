@@ -10,3 +10,4 @@ bin
 obj
 java-*/target
 node_modules
+.codeql

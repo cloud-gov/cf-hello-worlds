@@ -16,4 +16,4 @@ outputs:
 - name: cf-hello-worlds-build
 
 run:
-  path: cf-hello-worlds/java-see/build-java-see.sh
+  path: cf-hello-worlds/java-hello/build-java-hello.sh

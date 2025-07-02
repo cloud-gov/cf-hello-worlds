@@ -9,15 +9,13 @@ First, use the following command to download all of the dependencies and create 
 ```bash
 ./mvnw compile
 ./mvnw package
-
 ```
 
 ## Windows
 
 ```powershell
-.\mvnw.bat compile
-.\mvnw.bat package
-
+.\mvnw.cmd compile
+.\mvnw.cmd package
 ```
 
 ## Deploy the application

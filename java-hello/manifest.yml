@@ -1,6 +1,8 @@
 ---
 applications:
 - name: test-java-hello
+  buildpacks:
+  - https://github.com/cloudfoundry/java-buildpack.git#feature/go-migration
   random-route: true
   memory: 768M
   path: target/hello-world-0.0.1-SNAPSHOT.jar

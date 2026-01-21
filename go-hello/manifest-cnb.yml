@@ -1,0 +1,11 @@
+---
+applications:
+- name: go-hello-cnb
+  random-route: true
+  lifecycle: cnb
+  buildpacks:
+  - docker://docker.io/paketobuildpacks/go
+  memory: 32M
+  stack: cflinuxfs4
+  env:
+    LIFECYCLE: "CNB_V3"

@@ -5,5 +5,3 @@ applications:
   buildpacks:
     - nodejs_buildpack
   memory: 256M
-  env:
-    LIFECYCLE: "CLASSIC_V2"

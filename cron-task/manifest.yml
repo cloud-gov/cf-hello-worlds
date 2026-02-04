@@ -5,6 +5,7 @@ applications:
   disk_quota: 1G
   instances: 1
   memory: 256M
-  stack: cflinuxfs3
   command: (npm start && echo SUCCESS || echo FAIL) && sleep infinity
+  health-check-type: none
+  no-route: true
 

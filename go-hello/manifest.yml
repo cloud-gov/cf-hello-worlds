@@ -4,6 +4,5 @@ applications:
   buildpacks:
   - go_buildpack
   env:
-    GOVERSION: "1.20"
+    GOVERSION: "1.25"
   random-route: true
-  stack: cflinuxfs4

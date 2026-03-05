@@ -155,6 +155,26 @@ jobs:
           :x: Failed to deploy dotnet-core sample app
           <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
 
+  - name: deploy-static
+    serial_groups: [apps]
+    plan:
+      - in_parallel: *plan-gets
+      - put: deploy-static-staging
+        params:
+          path: cf-hello-worlds/static
+          manifest: cf-hello-worlds/static/manifest.yml
+      - put: deploy-static-production
+        params:
+          path: cf-hello-worlds/static
+          manifest: cf-hello-worlds/static/manifest.yml
+    on_failure:
+      put: slack
+      params:
+        <<: *slack-params
+        text: |
+          :x: Failed to deploy static sample app
+          <$ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME|View build details>
+
 resources:
   - name: cf-hello-worlds
     type: git
@@ -201,6 +221,10 @@ resources:
     type: cf
     source: *cf-source-staging
 
+  - name: deploy-static-staging
+    type: cf
+    source: *cf-source-staging
+
   - name: deploy-python-flask-production
     type: cf
     source: &cf-source-production
@@ -231,6 +255,10 @@ resources:
     source: *cf-source-production
 
   - name: deploy-dotnet-core-production
+    type: cf
+    source: *cf-source-production
+
+  - name: deploy-static-production
     type: cf
     source: *cf-source-production
 

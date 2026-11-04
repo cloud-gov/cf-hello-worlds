@@ -4,7 +4,7 @@ set -ex
 
 export TERM=${TERM:-dumb}
 
-wget https://download.oracle.com/java/21/latest/jdk-25_linux-x64_bin.tar.gz
+wget https://download.oracle.com/java/25/latest/jdk-25_linux-x64_bin.tar.gz
 tar -xvf jdk-25_linux-x64_bin.tar.gz
 VERSION=$(find . -maxdepth 1 -mindepth 1 -name  "jdk-25.*" | sed 's/^..//')
 mv "$VERSION" /opt/
